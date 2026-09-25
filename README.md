@@ -43,7 +43,7 @@ Fine-tuning and inference code for each open-weight generative LLM evaluated in 
 Llama-3.3-70B and DeepSeek-R1 were evaluated zero-shot only (no fine-tuning), per the paper's Methods and Table 3.
 
 DeepSeek-R1-Distill-Llama-70B's notebook differs structurally from the others, since it is a reasoning model that emits a chain-of-thought trace (wrapped in `<think>...</think>`) before its final answer:
-- Evaluated only on the challenging subset of the test set (0.65 < Overall Similarity Score < 1.0, N≈2,736), not the full test set, per §3.3 of the paper.
+- Evaluated only on the challenging subset of the test set (0.65 < Overall Similarity Score < 1.0), not the full test set, per §3.3 of the paper.
 - Uses a much larger generation budget (`max_new_tokens=2048` vs. 4 for every other model) and a correspondingly larger `max_seq_length`, to allow the reasoning trace to complete.
 - Answer extraction searches only the text *after* `</think>` for "Yes"/"No", rather than the whole decoded output, to avoid picking up an incidental mention of either word from within the reasoning trace itself.
 - Uses its own prompt format (`<｜begin▁of▁sentence｜><｜User｜>...<｜Assistant｜>`) rather than a chat template, since no Unsloth-registered chat template exists for this model.
